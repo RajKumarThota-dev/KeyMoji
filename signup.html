@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeyMoji - Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>KeyMoji</h1>
+            <h2>Create Account</h2>
+            <form method="POST">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <select name="grid_size">
+                    <option value="3">3x3 Grid</option>
+                    <option value="4" selected>4x4 Grid</option>
+                    <option value="5">5x5 Grid</option>
+                </select>
+                {% if error %}
+                    <div class="alert">{{ error }}</div>
+                {% endif %}
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

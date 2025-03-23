@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeyMoji - Step {{ step }} Grid</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>KeyMoji</h1>
+            <h2>Step {{ step }}</h2>
+            <p class="lead">Find your emoji and add {{ add_rule }}</p>
+            <div class="grid-container" style="grid-template-columns: repeat({{ grid_size }}, 1fr);">
+                {% for row in grid %}
+                    {% for pos, emoji in row %}
+                        <div class="grid-item">
+                            <span class="number">{{ pos }}</span>
+                            <span class="emoji">{{ emoji }}</span>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            <div class="button-group">
+                <form method="POST">
+                    <button type="submit" class="btn-primary">Next</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

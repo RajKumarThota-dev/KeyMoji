@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeyMoji - Emoji Assignment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>KeyMoji</h1>
+            <h2>Your Emojis</h2>
+            <p class="lead">Memorize These!</p>
+            <div class="emoji-list">
+                <p>Step 1: {{ emojis[0] }}</p>
+                <p>Step 2: {{ emojis[1] }}</p>
+                <p>Trust: {{ emojis[2] }}</p>
+            </div>
+            <p class="lead">Practice: Find your emoji’s number + {{ add_rule }}</p>
+            <p>Grid Size: {{ grid_size }}x{{ grid_size }}</p>
+            {% if error %}
+                <div class="alert">{{ error }}</div>
+            {% endif %}
+            <div class="button-group">
+                <form method="POST" action="{{ url_for('emoji_assignment') }}">
+                    <button type="submit" class="btn-primary">Continue</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

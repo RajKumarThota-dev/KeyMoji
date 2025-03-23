@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step {{ step }} - Security Symbol</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Step {{ step }}</h2>
+            <p class="lead">Enter number + {{ add_rule }} (Tries: {{ tries_left }})</p>
+            <form method="POST">
+                <input type="number" name="emoji_num" class="form-control" placeholder="Enter number" required min="1" max="23">
+                {% if error %}
+                    <div class="alert">{{ error }}</div>
+                {% endif %}
+                {% if tries_left > 0 %}
+                    <button type="submit" class="btn btn-success">Submit</button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+</html>

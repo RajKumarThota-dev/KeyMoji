@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Symbol - Practice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const countdown = document.getElementById('countdown');
+            const display = document.getElementById('emoji-display');
+            const number = document.getElementById('emoji-number');
+            const emojis = [
+                {% for num, emoji in emojis %}
+                    {num: {{ num }}, emoji: "{{ emoji }}"},
+                {% endfor %}
+            ];
+            let countdownNum = 3;
+            let index = 0;
+
+            function startCountdown() {
+                if (countdownNum > 0) {
+                    countdown.textContent = countdownNum;
+                    countdown.classList.remove('fade-in');
+                    void countdown.offsetWidth;
+                    countdown.classList.add('fade-in');
+                    countdownNum--;
+                    setTimeout(startCountdown, 1000);
+                } else if (countdownNum === 0) {
+                    countdown.textContent = 'Go!';
+                    countdown.classList.remove('fade-in');
+                    void countdown.offsetWidth;
+                    countdown.classList.add('fade-in');
+                    countdownNum--;
+                    setTimeout(showNextEmoji, 1000);
+                }
+            }
+
+            function showNextEmoji() {
+                if (index < emojis.length) {
+                    number.textContent = emojis[index].num;
+                    display.textContent = emojis[index].emoji;
+                    number.classList.remove('fade-in');
+                    display.classList.remove('fade-in');
+                    void number.offsetWidth;
+                    void display.offsetWidth;
+                    number.classList.add('fade-in');
+                    display.classList.add('fade-in');
+                    index++;
+                    setTimeout(showNextEmoji, 1000);
+                } else {
+                    window.location.href = "{{ url_for('practice_input') }}";
+                }
+            }
+            startCountdown();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div id="countdown" class="countdown"></div>
+            <div id="emoji-number" class="emoji-number"></div>
+            <div id="emoji-display" class="emoji-display"></div>
+        </div>
+    </div>
+</body>
+</html>

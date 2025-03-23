@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeyMoji - Step {{ step }} Input</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>KeyMoji</h1>
+            <h2>Step {{ step }}</h2>
+            <p class="lead">Enter: Position + {{ add_rule }}</p>
+            <p>Tries left: {{ tries_left }}</p>
+            <form method="POST">
+                <input type="number" name="emoji_num" placeholder="Enter number" required>
+                {% if error %}
+                    <div class="alert">{{ error }}</div>
+                {% endif %}
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
